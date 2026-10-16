@@ -1,5 +1,6 @@
 'use strict';
 const axios = require('axios');
+const http = require('http');
 
 // ───────── Конфиг (config.json рядом со скриптом) ─────────
 // { "token": "...", "chatId": "1174739981",
@@ -287,5 +288,14 @@ async function startBot() {
         }
     }
 }
+// HTTP-сервер нужен только для Render: сервис не засыпает, когда на него приходят пинги
+http
+    .createServer((req, res) => {
+        res.writeHead(200, { 'Content-Type': 'text/plain' });
+        res.end('ok');
+    })
+    .listen(process.env.PORT || 3000, () => {
+        log('🌐 HTTP-сервер слушает порт', process.env.PORT || 3000);
+    });
 
 startBot();
