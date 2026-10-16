@@ -1,12 +1,18 @@
 'use strict';
 const axios = require('axios');
-const fs = require('fs');
-const path = require('path');
 
 // ───────── Конфиг (config.json рядом со скриптом) ─────────
 // { "token": "...", "chatId": "1174739981",
 //   "firebaseUrl": "https://....firebasedatabase.app/.json" }
-const cfg = JSON.parse(fs.readFileSync(path.join(__dirname, 'config.json'), 'utf8'));
+const cfg = {
+    token: process.env.BOT_TOKEN,
+    chatId: process.env.CHAT_ID,
+    firebaseUrl: process.env.FIREBASE_URL,
+};
+if (!cfg.token || !cfg.chatId || !cfg.firebaseUrl) {
+    console.error('❌ Не заданы BOT_TOKEN, CHAT_ID или FIREBASE_URL');
+    process.exit(1);
+}
 const TOKEN = cfg.token;
 const CHAT_ID = String(cfg.chatId);
 const FIREBASE_URL = cfg.firebaseUrl;
