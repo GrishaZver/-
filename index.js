@@ -21,6 +21,7 @@ const FIREBASE_URL = cfg.firebaseUrl;
 const idToNick = {
     "666258": "Grisha_Zverovskiy",
     "4028950": "Lelik_Supreme",
+    "3859275": "Ilua_Muller",
     "685355": "Semyon_Lazarov",
     "4360313": "Kenzo_Kolodov",
     "4095031": "Katana_Hersoness",
